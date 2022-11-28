@@ -24,7 +24,7 @@ foreach ($arr as $ar) {
 
 // associative array
 $personData = ["name" => "Abul Mia", "father" => "Babul Mia", "city" => "Kabul", "age" => 30];
-
+$personData["country"] = "Bangladesh";
 echo $personData["name"];
 echo "<pre>";
 print_r($personData);

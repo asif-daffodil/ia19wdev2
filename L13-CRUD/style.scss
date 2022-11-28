@@ -1,0 +1,53 @@
+.flag {
+  padding-top: 20px;
+  position: relative;
+  height: 150px;
+  &::before {
+    content: attr(cname);
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    top: 150px;
+    left: 0;
+    transform: translateY(50%);
+    text-align: center;
+    font-weight: bolder;
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    font-size: 24px;
+  }
+  &::after {
+    content: "(" attr(total) ")";
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    top: 170px;
+    left: 0;
+    transform: translateY(100%);
+    text-align: center;
+    font-weight: bolder;
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    font-size: 18px;
+  }
+  > img {
+    height: 150px;
+    width: 100%;
+  }
+  &:first-child {
+    &::before {
+      background: url("./images/download.jpg");
+      background-size: cover;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+  &:last-child {
+    &::before {
+      background: url("./images/images.png");
+      background-size: cover;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+}
