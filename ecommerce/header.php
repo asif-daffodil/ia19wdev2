@@ -1,6 +1,7 @@
 <?php
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "ia19ecommerce");
+$pageName = basename($_SERVER['PHP_SELF']);
 ?>
 <!doctype html>
 <html lang="en">

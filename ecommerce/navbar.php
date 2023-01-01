@@ -7,15 +7,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    <a class="nav-link <?= $pageName == "index.php" ? "active" : null ?>" aria-current="page" href="./">
+                        Home
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
+                    <a class="nav-link <?= $pageName == "shop.php" ? "active" : null ?>" href="./shop.php">Shop</a>
                 </li>
 
                 <?php if (!isset($_SESSION['name'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="./signinSignup.php">Sign in/Sign up</a>
+                        <a class="nav-link <?= $pageName == "signinSignup.php" ? "active" : null ?>" href="./signinSignup.php">Sign in/Sign up</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item dropdown">
