@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="./">eCommerce</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,14 @@
                             <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative me-5" href="./cart.php">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="position-absolute top-50 start-100 translate-middle-y badge rounded-pill bg-danger" id="cartnav">
+                                0
+                            </span>
+                        </a>
+                    </li>
                 <?php } ?>
             </ul>
             <form class="d-flex" role="search">
@@ -43,3 +51,13 @@
         </div>
     </div>
 </nav>
+
+<script>
+    let getCardArr = [];
+    const cartNavFunc = () => {
+        const cartnav = document.getElementById("cartnav");
+        getCardJson = JSON.parse(sessionStorage.getItem("cartIds"));
+        cartnav.innerHTML = getCardJson?.cartList?.length ?? 0;
+    }
+    cartNavFunc();
+</script>

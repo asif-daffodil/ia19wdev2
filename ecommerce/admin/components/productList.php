@@ -5,6 +5,17 @@ $result_per_page = 5;
 $total_page = ceil($total_result / $result_per_page);
 $startPoint = ($pageno - 1) * $result_per_page;
 $select = $conn->query("SELECT * FROM `products` LIMIT $startPoint, $result_per_page");
+
+if (isset($_GET['delId'])) {
+    $delId = $_GET['delId'];
+    $checkdel = $conn->query("SELECT * FROM `products` WHERE `id` = $delId");
+    $checkdel->num_rows == 0 && header("location: $pageName?pageno=$pageno");
+    $del = $conn->query("DELETE FROM `products` WHERE `id` = $delId");
+    if ($del) {
+        echo "<script>toastr.error('Product has been deleted')</script>";
+        echo "<script>setTimeout(()=> location.replace(location.href), 1000)</script>";
+    }
+}
 ?>
 <div class="overflow-x-auto">
     <table class="table w-full">
@@ -30,7 +41,7 @@ $select = $conn->query("SELECT * FROM `products` LIMIT $startPoint, $result_per_
                     <td><?= $data->discount_price ?></td>
                     <td>
                         <a href='<?= "./$pageName?pageno=$pageno&editId=$data->id" ?>' class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                        <a href="" class="btn btn-error"><i class="bi bi-trash"></i></a>
+                        <a href='<?= "./$pageName?pageno=$pageno&delId=$data->id" ?>' class="btn btn-error" onclick="return confirm('do you really want to delete the product?')"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
             <?php $sn++;
