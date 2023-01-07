@@ -133,6 +133,7 @@
         cartJson.cartList.push(id);
         sessionStorage.setItem("cartIds", JSON.stringify(cartJson));
         cartNavFunc();
+        toastr.info("Product added to cart");
     }
 </script>
 </body>

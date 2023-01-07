@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2023 at 12:05 PM
+-- Generation Time: Jan 07, 2023 at 01:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `ia19ecommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `pmethod` varchar(255) NOT NULL,
+  `status` char(10) NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_id`, `quantity`, `price`, `user_id`, `address`, `pmethod`, `status`, `created_at`) VALUES
+(1, 20, 1, 550, 2, 'Dhaka', 'Cash on Deliver', 'pending', '2023-01-07 12:05:04'),
+(2, 22, 2, 2500, 2, 'Dhaka', 'Cash on Deliver', 'pending', '2023-01-07 12:05:04'),
+(3, 21, 1, 1600, 2, 'Dhaka', 'Cash on Deliver', 'pending', '2023-01-07 12:05:04'),
+(4, 23, 1, 1800, 2, 'Dhaka', 'Cash on Deliver', 'pending', '2023-01-07 12:05:04'),
+(5, 11, 1, 10999, 1, 'Bhammonbaria', 'Cash on Deliver', 'pending', '2023-01-07 12:11:09'),
+(6, 20, 1, 550, 1, 'Bhammonbaria', 'Cash on Deliver', 'pending', '2023-01-07 12:11:09'),
+(7, 19, 2, 400, 1, 'Bhammonbaria', 'Cash on Deliver', 'pending', '2023-01-07 12:11:09'),
+(8, 15, 1, 150, 1, 'Bhammonbaria', 'Cash on Deliver', 'pending', '2023-01-07 12:11:09');
 
 -- --------------------------------------------------------
 
@@ -81,6 +113,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `pass`, `role`, `created_at`) VALUES
 --
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -97,6 +137,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
@@ -107,6 +153,17 @@ ALTER TABLE `products`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
